@@ -8,14 +8,14 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private val BASE_URL = "https://newsapi.org/"
+    private val BASE_URL = "https://newsapi.org"
     private val API_KEY = "f4a585b1bca84858877f79f172cb4188"
 
     fun provideApiService(): ApiService {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val newRequest = chain.request().newBuilder()
-                    .addHeader("X-api_key", API_KEY)
+                    .addHeader("X-api-key", API_KEY)
                     .build()
                 chain.proceed(newRequest)
             }

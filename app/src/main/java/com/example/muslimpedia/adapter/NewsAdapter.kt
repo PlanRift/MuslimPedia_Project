@@ -37,12 +37,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
         val dateTimeString = dataNews.publishedAt
         val dateTimeFormat = SimpleDateFormat("yyy-mm-hh'T'HH:mm:ss'Z'", Locale.getDefault())
         val date = dateTimeFormat.parse(dateTimeString)
-        val dateFormat =  SimpleDateFormat("EE, dd MM | HH:MM", Locale.getDefault())
+        val myDateFormat =  SimpleDateFormat("EE, dd MM | HH:MM", Locale.getDefault())
+
+        val myDate = myDateFormat.format(date)
 
         holder.binding.apply {
             tvSource.text = dataNews.source.name
             tvTitle.text = dataNews.title
-            tvDate.text = dataNews.publishedAt
+            tvDate.text = myDate
 
             val placeholder = Picasso.get()
                 .load(dataNews.urlToImage)
