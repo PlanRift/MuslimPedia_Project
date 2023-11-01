@@ -1,12 +1,13 @@
 package com.example.muslimpedia.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.muslimpedia.R
 import com.example.muslimpedia.data.model.ArticlesItem
-import com.example.muslimpedia.data.model.NewsResponse
 import com.example.muslimpedia.databinding.ItemRowNewsBinding
+import com.example.muslimpedia.ui.detail.DetailNewsActivity
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -52,6 +53,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
                 .centerInside()
                 .placeholder(R.drawable.ic_logo)
                 .into(imgNews)
+        }
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, DetailNewsActivity::class.java)
+            intent.putExtra(DetailNewsActivity.DATA_NEWS, dataNews)
+            intent.putExtra(DetailNewsActivity.DATE_NEWS, myDate)
+            holder.itemView.context.startActivity(intent)
+
         }
     }
 }
